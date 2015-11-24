@@ -19,13 +19,14 @@ module.exports = class Core extends Trailpack {
     this.server = repl.start({
       // green prompt
       prompt: '\u001b[1;32mtrails > \u001b[0m',
-      useColors: true,
-      useGlobal: true
+      useColors: true
     })
 
     this.server.on('exit', err => {
       this.app.stop(err ? 1 : 0)
     })
+
+    this.server.context.app = this.app
 
     return Promise.resolve()
   }
