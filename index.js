@@ -10,24 +10,22 @@ module.exports = class Core extends Trailpack {
     return 'repl'
   }
 
-  configure () {
-    this.specialVar = '$$'
-    return Promise.resolve()
-  }
-
   initialize () {
-    this.server = repl.start({
-      // green prompt
-      prompt: '\u001b[1;32mtrails > \u001b[0m',
-      useColors: true
+    this.app.after('trailpack:all:initialized').then(() => {
+      console.log()
+      this.server = repl.start({
+        // green prompt
+        prompt: '\u001b[1;32mtrails > \u001b[0m',
+        useColors: true
+      })
+
+      this.server.on('exit', err => {
+        this.app.stop(err ? 1 : 0)
+      })
+
+      this.server.context.app = this.app
     })
 
-    this.server.on('exit', err => {
-      this.app.stop(err ? 1 : 0)
-    })
-
-    this.server.context.app = this.app
-
-    return Promise.resolve()
+    return this.app.after('trailpack:core:initialized')
   }
 }
