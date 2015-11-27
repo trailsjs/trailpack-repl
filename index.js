@@ -4,14 +4,14 @@ const Trailpack = require('trailpack')
 const repl = require('repl')
 const _ = require('lodash')
 
-module.exports = class Core extends Trailpack {
+module.exports = class REPL extends Trailpack {
 
   constructor (app, config) {
     super(app, require('./config'))
   }
 
   initialize () {
-    this.app.after('trailpack:all:initialized').then(() => {
+    this.app.after('trails:ready').then(() => {
       console.log()
       this.server = repl.start({
         // green prompt
@@ -26,6 +26,6 @@ module.exports = class Core extends Trailpack {
       this.server.context.app = this.app
     })
 
-    return this.app.after('trailpack:core:initialized')
+    return Promise.resolve()
   }
 }
