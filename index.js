@@ -14,6 +14,7 @@ module.exports = class REPL extends Trailpack {
   configure () {
     lib.Inspect.configureApp(this.app)
     lib.Inspect.configureApi(this.app.api)
+    lib.Inspect.configurePacks(this.app.packs)
 
     return Promise.resolve()
   }
