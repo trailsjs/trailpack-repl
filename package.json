@@ -15,6 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "big-tree-cli": "^0.1.6",
     "lodash": "^3.10.1"
   }
 }

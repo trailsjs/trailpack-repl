@@ -3,11 +3,19 @@
 const Trailpack = require('trailpack')
 const repl = require('repl')
 const _ = require('lodash')
+const ConsoleTree = require('big-tree-cli')
+const lib = require('./lib')
 
 module.exports = class REPL extends Trailpack {
 
   constructor (app, config) {
     super(app, require('./config'))
+  }
+
+  configure () {
+    lib.Inspect.configureApi(this.app.api)
+
+    return Promise.resolve()
   }
 
   initialize () {
