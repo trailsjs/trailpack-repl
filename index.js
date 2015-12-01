@@ -2,9 +2,11 @@
 
 const Trailpack = require('trailpack')
 const repl = require('repl')
-const _ = require('lodash')
 const lib = require('./lib')
 
+/**
+ * @class REPL
+ */
 module.exports = class REPL extends Trailpack {
 
   constructor (app, config) {

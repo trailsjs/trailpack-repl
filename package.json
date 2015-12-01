@@ -12,10 +12,17 @@
     "repl",
     "trailpack"
   ],
-  "author": "",
+  "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
     "lodash": "^3.10.1"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "mocha": true,
+      "node": true
+    }
   }
 }
