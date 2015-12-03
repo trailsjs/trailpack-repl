@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "trailpack": "0.0.2"
   },
   "eslintConfig": {
     "env": {
