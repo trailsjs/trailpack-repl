@@ -23,7 +23,6 @@ module.exports = class REPL extends Trailpack {
 
   initialize () {
     this.app.after('trails:ready').then(() => {
-      console.log()
       this.server = repl.start({
         // green prompt
         prompt: '\u001b[1;32mtrails > \u001b[0m',
