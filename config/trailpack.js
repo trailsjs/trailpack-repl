@@ -1,7 +1,12 @@
+/**
+ * REPL Trailpack Configuration
+ */
 module.exports = {
-  pkg: require('../package'),
-  provides: {
-    config: [ 'repl' ]
-  }
-}
 
+  events: {
+    initialize: {
+      listens: [ 'trails:ready' ]
+    }
+  }
+
+}
