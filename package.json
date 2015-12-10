@@ -10,7 +10,10 @@
     "trails",
     "trailsjs",
     "repl",
-    "trailpack"
+    "trailpack",
+    "console",
+    "shell",
+    "interpreter"
   ],
   "author": "Travis Webb <me@traviswebb.com>",
   "license": "MIT",
@@ -26,5 +29,8 @@
     "eslint": "^1.10.3",
     "eslint-config-trails": "0.0.9",
     "mocha": "^2.3.4"
+  },
+  "peerDependencies": {
+    "trailpack-core": "*"
   }
 }

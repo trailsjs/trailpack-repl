@@ -1,5 +1,6 @@
 # trailpack-repl
 
+[![Gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
 [![Build status][ci-image]][ci-url]
 [![Dependency Status][daviddm-image]][daviddm-url]
@@ -9,7 +10,7 @@ REPL Trailpack. Adds an interactive shell to your Trails app to help with
 development and debugging.
 
 ## Usage
-The core trailpack should always be loaded in your trailpack config.
+The repl trailpack is loaded in your trailpack config per usual.
 
 ```js
 // config/trailpack.js
@@ -41,3 +42,6 @@ please keep the following in mind:
 [daviddm-url]: https://david-dm.org/trailsjs/trailpack-repl
 [codeclimate-image]: https://img.shields.io/codeclimate/github/trailsjs/trailpack-repl.svg?style=flat-square
 [codeclimate-url]: https://codeclimate.com/github/trailsjs/trailpack-repl
+[gitter-image]: http://img.shields.io/badge/+%20GITTER-JOIN%20CHAT%20%E2%86%92-1DCE73.svg?style=flat-square
+[gitter-url]: https://gitter.im/trailsjs/trails
+
