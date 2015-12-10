@@ -5,7 +5,7 @@ module.exports = {
 
   events: {
     initialize: {
-      listens: [ 'trails:ready' ]
+      listen: [ 'trails:ready' ]
     }
   }
 
