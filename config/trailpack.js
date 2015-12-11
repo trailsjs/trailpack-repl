@@ -3,10 +3,4 @@
  */
 module.exports = {
 
-  events: {
-    initialize: {
-      listen: [ 'trails:ready' ]
-    }
-  }
-
 }

@@ -13,23 +13,19 @@ module.exports = class REPL extends Trailpack {
     lib.Inspect.configureApp(this.app)
     lib.Inspect.configureApi(this.app.api)
     lib.Inspect.configurePacks(this.app.packs)
+
   }
 
-  /**
-   * Initialize the REPL server
-   */
   initialize () {
-    this.server = repl.start({
-      // green prompt
-      prompt: '\u001b[1;32mtrails > \u001b[0m',
-      useColors: true
-    })
+    this.app.once('trails:ready', () => {
+      this.server = repl.start({
+        // green prompt
+        prompt: '\u001b[1;32mtrails > \u001b[0m',
+        useColors: true
+      })
 
-    this.server.on('exit', err => {
-      this.app.stop(err)
+      this.server.context.app = this.app
     })
-
-    this.server.context.app = this.app
   }
 
   constructor (app) {
