@@ -26,8 +26,8 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^1.10.3",
-    "eslint-config-trails": "0.0.9",
+    "eslint": "next",
+    "eslint-config-trails": "^1.0.0",
     "mocha": "^2.3.4"
   },
   "peerDependencies": {
