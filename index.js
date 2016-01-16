@@ -6,6 +6,10 @@ const lib = require('./lib')
 
 /**
  * @class REPL
+ *
+ * Provide an interactive Javascript shell for Trails applications
+ *
+ * @see {@link https://nodejs.org/api/repl.html#repl_repl}
  */
 module.exports = class REPL extends Trailpack {
 
@@ -25,6 +29,10 @@ module.exports = class REPL extends Trailpack {
 
       this.server.context.app = this.app
     })
+  }
+
+  unload () {
+    this.server.close()
   }
 
   constructor (app) {

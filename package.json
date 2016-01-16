@@ -6,6 +6,10 @@
   "scripts": {
     "test": "eslint . && mocha"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trailsjs/trailpack-repl.git"
+  },
   "keywords": [
     "trails",
     "trailsjs",
@@ -26,8 +30,8 @@
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
-    "lodash": "^3.10.1",
-    "trailpack": "latest"
+    "lodash": "^4.0.0",
+    "trailpack": "0.0.21"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -35,6 +39,9 @@
   "devDependencies": {
     "eslint": "^2.0.0-beta.1",
     "eslint-config-trails": "^1.0.0",
-    "mocha": "^2.3.4"
+    "mocha": "^2.3.4",
+    "smokesignals": "0.0.8",
+    "trailpack-core": "0.0.20",
+    "trails": "0.0.23"
   }
 }
