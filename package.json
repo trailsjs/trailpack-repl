@@ -21,7 +21,7 @@
     "interactive"
   ],
   "author": "Trails.js Team <hello@trailsjs.io>",
-  "contribuors": [
+  "contributors": [
     {
       "name": "Travis Webb",
       "url": "https://github.com/tjwebb"
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "eslint": "^2.0.0-beta.1",
-    "eslint-config-trails": "^1.0.0",
+    "eslint-config-trails": "1.0.1",
     "mocha": "^2.3.4",
     "smokesignals": "0.0.8",
     "trailpack-core": "0.0.20",

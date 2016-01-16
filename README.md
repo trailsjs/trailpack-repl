@@ -13,7 +13,7 @@ development and debugging.
 The repl trailpack is loaded in your trailpack config per usual.
 
 ```js
-// config/trailpack.js
+// config/main.js
 module.exports = {
   // ...
   packs: [
@@ -22,6 +22,25 @@ module.exports = {
   ]
 }
 ```
+
+## REST command
+REPL Trailpack allow you to test your REST API directly from the interactive shell, just write : 
+### GET 
+`get("/api/v1/default/info")`
+### POST
+`post("/api/v1/default/info", {some : 'data'})`
+
+If you want to simulate some HTML form you can do : 
+
+`post("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded')`
+### PUT 
+`put("/api/v1/default/info", {some : 'data'})`
+
+If you want to simulate some HTML form you can do : 
+
+`put("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded')`
+### DELETE 
+`delete("/api/v1/default/info")`
 
 ## Contributing
 We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/CONTRIBUTING.md) for more
