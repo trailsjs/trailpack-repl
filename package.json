@@ -13,9 +13,16 @@
     "trailpack",
     "console",
     "shell",
-    "interpreter"
+    "interpreter",
+    "interactive"
   ],
-  "author": "Travis Webb <me@traviswebb.com>",
+  "author": "Trails.js Team <hello@trailsjs.io>",
+  "contribuors": [
+    {
+      "name": "Travis Webb",
+      "url": "https://github.com/tjwebb"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
@@ -26,11 +33,8 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "next",
+    "eslint": "^2.0.0-beta.1",
     "eslint-config-trails": "^1.0.0",
     "mocha": "^2.3.4"
-  },
-  "peerDependencies": {
-    "trailpack-core": "*"
   }
 }
