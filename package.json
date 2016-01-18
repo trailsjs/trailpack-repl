@@ -31,7 +31,7 @@
   "dependencies": {
     "big-tree-cli": "^0.1.6",
     "lodash": "^4.0.0",
-    "trailpack": "0.0.21"
+    "trailpack": "1.0.0-alpha-1"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -40,8 +40,8 @@
     "eslint": "^2.0.0-beta.1",
     "eslint-config-trails": "1.0.1",
     "mocha": "^2.3.4",
-    "smokesignals": "0.0.8",
-    "trailpack-core": "0.0.20",
-    "trails": "0.0.23"
+    "smokesignals": "1.0.0-alpha-1",
+    "trailpack-core": "1.0.0-alpha-2",
+    "trails": "1.0.0-alpha-4"
   }
 }
