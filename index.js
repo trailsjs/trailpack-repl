@@ -30,6 +30,10 @@ module.exports = class REPL extends Trailpack {
         useColors: true
       })
 
+      this.server.once('exit', () => {
+        this.app.stop().then(() => process.exit())
+      })
+
       this.server.context.app = this.app
       this.server.context.get = lib.Http.get.bind(lib.Http)
       this.server.context.post = lib.Http.post.bind(lib.Http)
