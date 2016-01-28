@@ -44,6 +44,7 @@ module.exports = class REPL extends Trailpack {
   }
 
   unload () {
+    this.server.removeAllListeners()
     this.server.close()
   }
 
