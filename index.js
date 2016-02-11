@@ -23,12 +23,18 @@ module.exports = class REPL extends Trailpack {
   initialize() {
 
     this.app.once('trails:ready', () => {
-      this.server = repl.start({
-        // green prompt
-        prompt: '\u001b[1;32mtrails > \u001b[0m',
-
-        useColors: true
-      })
+      try {
+        this.server = repl.start({
+          // green prompt
+          prompt: '\u001b[1;32mtrails > \u001b[0m',
+          useColors: true
+        })
+      }
+      catch (e) {
+        this.log.warn('trailpack-repl: Disabling REPL.')
+        this.log.error(e)
+        return
+      }
 
       this.server.once('exit', () => {
         this.app.stop().then(() => process.exit())
