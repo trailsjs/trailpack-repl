@@ -4,7 +4,7 @@
   "description": "Trailpack REPL",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint --fix . && mocha"
   },
   "repository": {
     "type": "git",
@@ -25,23 +25,27 @@
     {
       "name": "Travis Webb",
       "url": "https://github.com/tjwebb"
+    },
+    {
+      "name": "Jimmy Aumard",
+      "url": "https://github.com/jaumard"
     }
   ],
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
-    "lodash": "^4.2.0",
-    "trailpack": "1.0.0-alpha-1"
+    "lodash": "^4.5.0",
+    "trailpack": "1.0.0-beta-3"
   },
   "eslintConfig": {
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^2.0.0-beta.1",
+    "eslint": "^2.2.0",
     "eslint-config-trails": "^1.0.1",
-    "mocha": "^2.3.4",
-    "smokesignals": "^1.0",
+    "mocha": "^2.4.5",
+    "smokesignals": "^1.0.2",
     "trailpack-core": "1.0.0-alpha-2",
-    "trails": "1.0.0-alpha-4"
+    "trails": "1.0.0-beta-2"
   }
 }
