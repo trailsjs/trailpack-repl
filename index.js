@@ -29,6 +29,7 @@ module.exports = class REPL extends Trailpack {
           prompt: '\u001b[1;32mtrails > \u001b[0m',
           useColors: true
         })
+        this.app.emit('repl:started')
       }
       catch (e) {
         this.log.warn('trailpack-repl: Disabling REPL.')
