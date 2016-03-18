@@ -21,7 +21,6 @@ module.exports = class REPL extends Trailpack {
   }
 
   initialize() {
-
     this.app.once('trails:ready', () => {
       try {
         this.server = repl.start({
@@ -51,9 +50,8 @@ module.exports = class REPL extends Trailpack {
   }
 
   unload () {
-    this.server.removeAllListeners()
+    this.server.removeAllListeners('exit')
     this.server.close()
-    //delete this.server
 
     lib.Inspect.unconfigureApp(this.app)
     lib.Inspect.unconfigureApi(this.app.api)
