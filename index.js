@@ -53,7 +53,7 @@ module.exports = class REPL extends Trailpack {
   unload () {
     this.server.removeAllListeners()
     this.server.close()
-    delete this.server
+    //delete this.server
 
     lib.Inspect.unconfigureApp(this.app)
     lib.Inspect.unconfigureApi(this.app.api)
