@@ -45,6 +45,9 @@ module.exports = class REPL extends Trailpack {
       this.server.context.post = lib.Http.post.bind(lib.Http)
       this.server.context.put = lib.Http.put.bind(lib.Http)
       this.server.context.delete = lib.Http.delete.bind(lib.Http)
+      this.server.context.patch = lib.Http.patch.bind(lib.Http)
+      this.server.context.head = lib.Http.head.bind(lib.Http)
+      this.server.context.options = lib.Http.options.bind(lib.Http)
     })
 
   }

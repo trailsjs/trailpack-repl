@@ -27,6 +27,13 @@ module.exports = {
 REPL Trailpack allow you to test your REST API directly from the interactive shell, just write : 
 ### GET 
 `get("/api/v1/default/info")`
+
+### HEAD 
+`head("/api/v1/default/info")`
+
+### OPTIONS 
+`options("/api/v1/default/info")`
+
 ### POST
 `post("/api/v1/default/info", {some : 'data'})`
 
@@ -39,8 +46,24 @@ If you want to simulate some HTML form you can do :
 If you want to simulate some HTML form you can do : 
 
 `put("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded')`
+
+### PATCH 
+`patch("/api/v1/default/info", {some : 'data'})`
+
 ### DELETE 
 `delete("/api/v1/default/info")`
+
+By default headers are `{'Accept': 'application/json'}` but they can be modify by adding an extra param of each method like this :
+
+```
+get("/api/v1/default/info", {'Accept': 'text/xml'})
+head("/api/v1/default/info", {'Accept': 'text/xml'})
+options("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded', {'Accept': 'text/xml'})
+post("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded', {'Accept': 'text/xml'})
+put("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded', {'Accept': 'text/xml'})
+patch("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded', {'Accept': 'text/xml'})
+delete("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded', {'Accept': 'text/xml'})
+```
 
 ## Contributing
 We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/CONTRIBUTING.md) for more
