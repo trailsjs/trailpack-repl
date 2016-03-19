@@ -1,5 +1,7 @@
 'use strict'
 
+const fs = require('fs')
+const path = require('path')
 const repl = require('repl')
 const Trailpack = require('trailpack')
 const lib = require('./lib')
@@ -18,6 +20,8 @@ module.exports = class REPL extends Trailpack {
     lib.Inspect.configureApi(this.app.api)
     lib.Inspect.configurePacks(this.app.packs)
     lib.Http.init(this.app)
+
+    this.config.node_repl_history = path.resolve(this.app.config.main.paths.temp, '.node_repl_history')
   }
 
   initialize() {
@@ -31,9 +35,22 @@ module.exports = class REPL extends Trailpack {
         this.app.emit('repl:started')
       }
       catch (e) {
-        this.log.warn('trailpack-repl: Disabling REPL.')
         this.log.error(e)
+        this.log.warn('trailpack-repl: Disabling REPL.')
         return
+      }
+
+      try {
+        fs.statSync(this.node_repl_history)
+        fs.readFileSync(this.node_repl_history).toString()
+          .split('\n')
+          .reverse()
+          .filter(line => line.trim())
+          .map(line => this.server.history.push(line))
+      }
+      catch (e) {
+        console.log(e)
+        this.log.silly('Could not read REPL history file. This is strange, but not fatal')
       }
 
       this.server.once('exit', () => {
@@ -53,6 +70,14 @@ module.exports = class REPL extends Trailpack {
   }
 
   unload () {
+    try {
+      fs.appendFileSync(this.node_repl_history, this.server.lines.join('\n'))
+    }
+    catch (e) {
+      this.log.warn(e)
+      this.log.warn('Could not create REPL history file. This is strange, but not fatal.')
+    }
+
     this.server.removeAllListeners('exit')
     this.server.close()
 

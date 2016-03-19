@@ -6,8 +6,8 @@
 [![Dependency Status][daviddm-image]][daviddm-url]
 [![Code Climate][codeclimate-image]][codeclimate-url]
 
-REPL Trailpack. Adds an interactive shell to your Trails app to help with
-development and debugging.
+[REPL](https://nodejs.org/api/repl.html) Trailpack. Adds an interactive shell to your Trails app to help with
+development and debugging. Saves command history between sessions.
 
 ## Usage
 The repl trailpack is loaded in your trailpack config per usual.
