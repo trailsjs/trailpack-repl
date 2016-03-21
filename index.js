@@ -21,7 +21,11 @@ module.exports = class REPL extends Trailpack {
     lib.Inspect.configurePacks(this.app.packs)
     lib.Http.init(this.app)
 
-    this.config.node_repl_history = path.resolve(this.app.config.main.paths.temp, '.node_repl_history')
+    if (!this.config.historyFileName) {
+      this.config.historyFileName = '.node_repl_history'
+    }
+
+    this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
   }
 
   initialize() {
@@ -41,8 +45,9 @@ module.exports = class REPL extends Trailpack {
       }
 
       try {
-        fs.statSync(this.node_repl_history)
-        fs.readFileSync(this.node_repl_history).toString()
+        console.log(this.historyFile)
+        fs.statSync(this.historyFile)
+        fs.readFileSync(this.historyFile).toString()
           .split('\n')
           .reverse()
           .filter(line => line.trim())
@@ -71,11 +76,11 @@ module.exports = class REPL extends Trailpack {
 
   unload () {
     try {
-      fs.appendFileSync(this.node_repl_history, this.server.lines.join('\n'))
+      fs.appendFileSync(this.historyFile, this.server.lines.join('\n'))
     }
     catch (e) {
-      this.log.warn(e)
-      this.log.warn('Could not create REPL history file. This is strange, but not fatal.')
+      this.app.log.warn(e)
+      this.app.log.warn('Could not create REPL history file. This is strange, but not fatal.')
     }
 
     this.server.removeAllListeners('exit')
