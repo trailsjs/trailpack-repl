@@ -45,7 +45,6 @@ module.exports = class REPL extends Trailpack {
       }
 
       try {
-        console.log(this.historyFile)
         fs.statSync(this.historyFile)
         fs.readFileSync(this.historyFile).toString()
           .split('\n')
@@ -54,8 +53,7 @@ module.exports = class REPL extends Trailpack {
           .map(line => this.server.history.push(line))
       }
       catch (e) {
-        console.log(e)
-        this.log.silly('Could not read REPL history file. This is strange, but not fatal')
+        this.log.silly('Could not read REPL history file. One will be created on shutdown')
       }
 
       this.server.once('exit', () => {
