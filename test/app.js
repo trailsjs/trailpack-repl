@@ -1,5 +1,6 @@
 'use strict'
 
+const path = require('path')
 const _ = require('lodash')
 const smokesignals = require('smokesignals')
 
@@ -14,8 +15,11 @@ module.exports = _.defaultsDeep({
       packs: [
         smokesignals.Trailpack,
         require('trailpack-core'),
-        require('../') // trailpack-waterline
-      ]
+        require('../') // trailpack-repl
+      ],
+      paths: {
+        temp: path.resolve(__dirname)
+      }
     }
   }
 }, smokesignals.FailsafeConfig)

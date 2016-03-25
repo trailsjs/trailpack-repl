@@ -26,6 +26,8 @@ module.exports = class REPL extends Trailpack {
     }
 
     this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
+
+    this.log.info('historyFile', this.historyFile)
   }
 
   initialize() {
@@ -53,7 +55,8 @@ module.exports = class REPL extends Trailpack {
           .map(line => this.server.history.push(line))
       }
       catch (e) {
-        this.log.silly('Could not read REPL history file. One will be created on shutdown')
+        this.log.debug('Could not read REPL history file at', this.historyFile)
+        this.log.debug('No problem, a history file will be created on shutdown')
       }
 
       this.server.once('exit', () => {
@@ -69,20 +72,25 @@ module.exports = class REPL extends Trailpack {
       this.server.context.head = lib.Http.head.bind(lib.Http)
       this.server.context.options = lib.Http.options.bind(lib.Http)
     })
-
   }
 
   unload () {
-    try {
-      fs.appendFileSync(this.historyFile, this.server.lines.join('\n'))
-    }
-    catch (e) {
-      this.app.log.warn(e)
-      this.app.log.warn('Could not create REPL history file. This is strange, but not fatal.')
-    }
-
     this.server.removeAllListeners('exit')
     this.server.close()
+
+    try {
+      const lines = this.server.history
+        .reverse()
+        .filter(line => line.trim())
+        .join('\n')
+
+      fs.writeFileSync(this.historyFile, lines)
+    }
+    catch (e) {
+      this.app.log.debug(e)
+      this.app.log.warn('Could not create REPL history file at', this.historyFile)
+      this.app.log.warn('This is strange, but not fatal. Set loglevel to "debug" for more info')
+    }
 
     lib.Inspect.unconfigureApp(this.app)
     lib.Inspect.unconfigureApi(this.app.api)

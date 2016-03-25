@@ -14,6 +14,24 @@ describe('Trails App', () => {
   })
 })
 
+describe('REPL', () => {
+  describe('history', () => {
+    let repl
+    before(() => {
+      repl = global.app.packs.repl.server
+    })
+    it('should load history from historyFile', () => {
+      console.log(global.app.config.main.paths)
+      assert.equal(repl.history.length, 3)
+      assert.equal(repl.history[2], 'var a = 1')
+      assert.equal(repl.history[1], 'var b = 1')
+      assert.equal(repl.history[0], 'var c = 1')
+    })
+  })
+
+})
+
+
 after(() => {
   return global.app.stop()
 })
