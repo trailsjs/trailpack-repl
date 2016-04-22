@@ -36,7 +36,8 @@ module.exports = class REPL extends Trailpack {
         this.server = repl.start({
           // green prompt
           prompt: '\u001b[1;32mtrails > \u001b[0m',
-          useColors: true
+          useColors: true,
+          replMode: repl.REPL_MODE_STRICT
         })
         this.app.emit('repl:started')
       }
