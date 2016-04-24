@@ -27,7 +27,7 @@ module.exports = class REPL extends Trailpack {
 
     this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
 
-    this.log.info('historyFile', this.historyFile)
+    this.log.debug('historyFile', this.historyFile)
   }
 
   initialize() {

@@ -23,8 +23,9 @@ module.exports = {
 }
 ```
 
-## REST command
-REPL Trailpack allow you to test your REST API directly from the interactive shell, just write : 
+## Shell Commands
+With the [REPL Trailpack](https://github.com/trailsjs/trailpack-repl) you can test your REST API directly from the interactive shell.
+
 ### GET 
 `get("/api/v1/default/info")`
 
@@ -53,7 +54,7 @@ If you want to simulate some HTML form you can do :
 ### DELETE 
 `delete("/api/v1/default/info")`
 
-By default headers are `{'Accept': 'application/json'}` but they can be modify by adding an extra param of each method like this :
+By default headers are `{'Accept': 'application/json'}` but they can be modified by adding an extra param of each method like this :
 
 ```
 get("/api/v1/default/info", {'Accept': 'text/xml'})
@@ -66,7 +67,7 @@ delete("/api/v1/default/info", 'some=data', 'application/x-www-form-urlencoded',
 ```
 
 ## Contributing
-We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/CONTRIBUTING.md) for more
+We love contributions! Please check out our [Contributor's Guide](https://github.com/trailsjs/trails/blob/master/.github/CONTRIBUTING.md) for more
 information on how our projects are organized and how to get started.
 
 ## License
