@@ -33,12 +33,17 @@ module.exports = class REPL extends Trailpack {
   initialize() {
     try {
       this.server = repl.start({
-        // green prompt
-        prompt: '\u001b[1;32mtrails > \u001b[0m',
+        prompt: '',
         useColors: true,
         replMode: repl.REPL_MODE_STRICT
       })
-      this.emit('repl:started')
+      this.server.pause()
+      this.app.once('trails:ready', () => {
+        // green prompt
+        this.server.setPrompt('\u001b[1;32mtrails > \u001b[0m')
+        this.server.resume()
+        this.server.write(null, { name: 'return' })
+      })
     }
     catch (e) {
       this.log.error(e)
