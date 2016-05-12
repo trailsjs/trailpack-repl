@@ -31,48 +31,48 @@ module.exports = class REPL extends Trailpack {
   }
 
   initialize() {
-    this.app.once('trails:ready', () => {
-      try {
-        this.server = repl.start({
-          // green prompt
-          prompt: '\u001b[1;32mtrails > \u001b[0m',
-          useColors: true,
-          replMode: repl.REPL_MODE_STRICT
-        })
-        this.app.emit('repl:started')
-      }
-      catch (e) {
-        this.log.error(e)
-        this.log.warn('trailpack-repl: Disabling REPL.')
-        return
-      }
-
-      try {
-        fs.statSync(this.historyFile)
-        fs.readFileSync(this.historyFile).toString()
-          .split('\n')
-          .reverse()
-          .filter(line => line.trim())
-          .map(line => this.server.history.push(line))
-      }
-      catch (e) {
-        this.log.debug('Could not read REPL history file at', this.historyFile)
-        this.log.debug('No problem, a history file will be created on shutdown')
-      }
-
-      this.server.once('exit', () => {
-        this.app.stop().then(() => process.exit())
+    try {
+      this.server = repl.start({
+        // green prompt
+        prompt: '\u001b[1;32mtrails > \u001b[0m',
+        useColors: true,
+        replMode: repl.REPL_MODE_STRICT
       })
+      this.emit('repl:started')
+    }
+    catch (e) {
+      this.log.error(e)
+      this.log.warn('trailpack-repl: Disabling REPL.')
+      return
+    }
 
-      this.server.context.app = this.app
-      this.server.context.get = lib.Http.get.bind(lib.Http)
-      this.server.context.post = lib.Http.post.bind(lib.Http)
-      this.server.context.put = lib.Http.put.bind(lib.Http)
-      this.server.context.delete = lib.Http.delete.bind(lib.Http)
-      this.server.context.patch = lib.Http.patch.bind(lib.Http)
-      this.server.context.head = lib.Http.head.bind(lib.Http)
-      this.server.context.options = lib.Http.options.bind(lib.Http)
+    try {
+      fs.statSync(this.historyFile)
+      fs.readFileSync(this.historyFile).toString()
+        .split('\n')
+        .reverse()
+        .filter(line => line.trim())
+        .map(line => this.server.history.push(line))
+    }
+    catch (e) {
+      this.log.debug('Could not read REPL history file at', this.historyFile)
+      this.log.debug('No problem, a history file will be created on shutdown')
+    }
+
+    this.server.once('exit', () => {
+      this.app.stop().then(() => process.exit())
     })
+
+    this.server.context.app = this.app
+
+    // TODO https://github.com/trailsjs/trailpack-repl/issues/33
+    this.server.context.get = lib.Http.get.bind(lib.Http)
+    this.server.context.post = lib.Http.post.bind(lib.Http)
+    this.server.context.put = lib.Http.put.bind(lib.Http)
+    this.server.context.delete = lib.Http.delete.bind(lib.Http)
+    this.server.context.patch = lib.Http.patch.bind(lib.Http)
+    this.server.context.head = lib.Http.head.bind(lib.Http)
+    this.server.context.options = lib.Http.options.bind(lib.Http)
   }
 
   unload () {
@@ -80,7 +80,7 @@ module.exports = class REPL extends Trailpack {
     this.server.close()
 
     try {
-      const lines = this.server.history
+      const lines = (this.server.history || [ ])
         .reverse()
         .filter(line => line.trim())
         .join('\n')
