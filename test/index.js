@@ -5,7 +5,7 @@ const TrailsApp = require('trails')
 
 before(() => {
   global.app = new TrailsApp(require('./app'))
-  return global.app.start().catch(global.app.stop)
+  return global.app.start()
 })
 
 describe('Trails App', () => {
@@ -21,7 +21,6 @@ describe('REPL', () => {
       repl = global.app.packs.repl.server
     })
     it('should load history from historyFile', () => {
-      console.log(global.app.config.main.paths)
       assert.equal(repl.history.length, 3)
       assert.equal(repl.history[2], 'var a = 1')
       assert.equal(repl.history[1], 'var b = 1')
@@ -30,7 +29,6 @@ describe('REPL', () => {
   })
 
 })
-
 
 after(() => {
   return global.app.stop()

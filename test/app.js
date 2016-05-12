@@ -13,7 +13,7 @@ module.exports = _.defaultsDeep({
   config: {
     main: {
       packs: [
-        smokesignals.Trailpack,
+        //smokesignals.Trailpack,
         require('trailpack-core'),
         require('../') // trailpack-repl
       ],
