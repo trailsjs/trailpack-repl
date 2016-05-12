@@ -37,6 +37,9 @@
     "lodash": "^4.5.0",
     "trailpack": "^1.0.0"
   },
+  "bundledDependencies": [
+    "big-tree-cli"
+  ],
   "eslintConfig": {
     "extends": "trails"
   },
