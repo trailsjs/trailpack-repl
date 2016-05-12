@@ -42,7 +42,7 @@ module.exports = class REPL extends Trailpack {
         // green prompt
         this.server.setPrompt('\u001b[1;32mtrails > \u001b[0m')
         this.server.resume()
-        this.server.write(null, { name: 'return' })
+        this.server.write('', { name: 'return' })
       })
     }
     catch (e) {
