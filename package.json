@@ -1,10 +1,10 @@
 {
   "name": "trailpack-repl",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Trailpack REPL",
   "main": "index.js",
   "scripts": {
-    "test": "eslint --fix . && mocha"
+    "test": "eslint . && mocha"
   },
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^2.9.0",
+    "eslint": "^2.10.2",
     "eslint-config-trails": "^1.0.6",
     "mocha": "^2.4.5",
     "smokesignals": "^1.2.2",
