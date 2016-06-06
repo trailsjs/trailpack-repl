@@ -60,8 +60,8 @@ module.exports = class REPL extends Trailpack {
         .map(line => this.server.history.push(line))
     }
     catch (e) {
-      this.log.debug('Could not read REPL history file at', this.historyFile)
-      this.log.debug('No problem, a history file will be created on shutdown')
+      this.log.silly('Could not read REPL history file at', this.historyFile)
+      this.log.silly('No problem, a history file will be created on shutdown')
     }
 
     this.server.once('exit', () => {
