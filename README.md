@@ -23,6 +23,17 @@ module.exports = {
 }
 ```
 
+```js
+// config/repl.js
+module.exports = {
+  /**
+   * REPL is disabled automatically if no text terminal is available. Set
+   * to "true" to override this behavior.
+   */
+  allowNoTTY: false
+}
+```
+
 ## Shell Commands
 With the [REPL Trailpack](https://github.com/trailsjs/trailpack-repl) you can test your REST API directly from the interactive shell.
 
