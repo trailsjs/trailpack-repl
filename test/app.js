@@ -8,8 +8,7 @@ module.exports = _.defaultsDeep({
   pkg: {
     name: 'repl-trailpack-test'
   },
-  api: {
-  },
+  api: {},
   config: {
     repl: {
       allowNoTTY: true
