@@ -26,10 +26,12 @@ module.exports = class REPL extends Trailpack {
     lib.Http.init(this.app)
 
     if (!this.config.historyFileName) {
-      this.config.historyFileName = '.node_repl_history'
+      this.config.historyFileName = process.env.NODE_REPL_HISTORY || '.node_repl_history'
     }
 
-    process.env.NODE_REPL_HISTORY = this.config.historyFileName
+    if (!this.config.historySize) {
+      this.config.historySize = process.env.NODE_REPL_HISTORY_SIZE || 1000
+    }
 
     this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
 
@@ -55,7 +57,8 @@ module.exports = class REPL extends Trailpack {
       this.server = repl.start({
         prompt: '',
         useColors: true,
-        replMode: repl.REPL_MODE_STRICT
+        replMode: repl.REPL_MODE_STRICT,
+        historySize: this.config.historySize
       })
       this.server.pause()
       this.app.once('trails:ready', () => {
@@ -76,6 +79,7 @@ module.exports = class REPL extends Trailpack {
       fs.readFileSync(this.historyFile).toString()
         .split('\n')
         .reverse()
+        .slice(0, this.config.historySize)
         .filter(line => line.trim())
         .map(line => this.server.history.push(line))
     }
