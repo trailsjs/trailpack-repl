@@ -11,6 +11,9 @@ module.exports = _.defaultsDeep({
   api: {
   },
   config: {
+    repl: {
+      allowNoTTY: true
+    },
     main: {
       packs: [
         //smokesignals.Trailpack,
