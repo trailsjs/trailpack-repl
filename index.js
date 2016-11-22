@@ -15,7 +15,7 @@ const lib = require('./lib')
  */
 module.exports = class REPL extends Trailpack {
 
-  validate () {
+  validate() {
 
   }
 
@@ -26,7 +26,11 @@ module.exports = class REPL extends Trailpack {
     lib.Http.init(this.app)
 
     if (!this.config.historyFileName) {
-      this.config.historyFileName = '.node_repl_history'
+      this.config.historyFileName = process.env.NODE_REPL_HISTORY || '.node_repl_history'
+    }
+
+    if (!this.config.historySize) {
+      this.config.historySize = process.env.NODE_REPL_HISTORY_SIZE || 1000
     }
 
     this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
@@ -53,7 +57,8 @@ module.exports = class REPL extends Trailpack {
       this.server = repl.start({
         prompt: '',
         useColors: true,
-        replMode: repl.REPL_MODE_STRICT
+        replMode: repl.REPL_MODE_STRICT,
+        historySize: this.config.historySize
       })
       this.server.pause()
       this.app.once('trails:ready', () => {
@@ -72,10 +77,11 @@ module.exports = class REPL extends Trailpack {
     try {
       fs.statSync(this.historyFile)
       fs.readFileSync(this.historyFile).toString()
-          .split('\n')
-          .reverse()
-          .filter(line => line.trim())
-          .map(line => this.server.history.push(line))
+        .split('\n')
+        .reverse()
+        .slice(0, this.config.historySize)
+        .filter(line => line.trim())
+        .map(line => this.server.history.push(line))
     }
     catch (e) {
       this.log.silly('Could not read REPL history file at', this.historyFile)
@@ -98,12 +104,16 @@ module.exports = class REPL extends Trailpack {
     this.server.context.options = lib.Http.options.bind(lib.Http)
   }
 
-  unload () {
+  unload() {
+    if (!process.stdout.isTTY && !this.app.config.repl.allowNoTTY) {
+      return
+    }
+
     this.server.removeAllListeners('exit')
     this.server.close()
 
     try {
-      const lines = (this.server.history || [ ])
+      const lines = (this.server.history || [])
         .reverse()
         .filter(line => line.trim())
         .join('\n')
