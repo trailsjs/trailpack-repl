@@ -44,7 +44,8 @@
     "eslint": "^3.3.1",
     "eslint-config-trails": "^2",
     "mocha": "^3.0.2",
-    "smokesignals": "v2-latest"
+    "smokesignals": "v2-latest",
+    "trails": "^2.0.0-rc10"
   },
   "publishConfig": {
     "tag": "next"
