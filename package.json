@@ -1,6 +1,6 @@
 {
   "name": "trailpack-repl",
-  "version": "2.0.0-rc2",
+  "version": "2.0.0-rc3",
   "description": "Trailpack REPL",
   "main": "index.js",
   "scripts": {
