@@ -1,3 +1,4 @@
+/* eslint no-process-env: 0 */
 const fs = require('fs')
 const path = require('path')
 const repl = require('repl')

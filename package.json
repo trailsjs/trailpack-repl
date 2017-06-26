@@ -43,7 +43,7 @@
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^3",
+    "eslint": "^4",
     "eslint-config-trails": "^3",
     "mocha": "^3.4",
     "smokesignals": "^3",
