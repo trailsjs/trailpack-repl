@@ -1,10 +1,6 @@
-'use strict'
-
 const path = require('path')
-const _ = require('lodash')
-const smokesignals = require('smokesignals')
 
-module.exports = _.defaultsDeep({
+module.exports = {
   pkg: {
     name: 'repl-trailpack-test'
   },
@@ -15,7 +11,6 @@ module.exports = _.defaultsDeep({
     },
     main: {
       packs: [
-        //smokesignals.Trailpack,
         require('../') // trailpack-repl
       ],
       paths: {
@@ -23,6 +18,5 @@ module.exports = _.defaultsDeep({
       }
     }
   }
-}, smokesignals.FailsafeConfig)
-
+}
 

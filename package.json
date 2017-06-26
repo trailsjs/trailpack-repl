@@ -34,20 +34,19 @@
   "license": "MIT",
   "dependencies": {
     "big-tree-cli": "^0.1.6",
-    "lodash": "^4.15.0",
-    "trailpack": "v2-latest"
+    "lodash.functions": "^4.3.0",
+    "lodash.merge": "^4.6.0",
+    "lodash.omit": "^4.5.0",
+    "trailpack": "3.0.0-pre.5"
   },
   "eslintConfig": {
     "extends": "trails"
   },
   "devDependencies": {
-    "eslint": "^3.3.1",
-    "eslint-config-trails": "^2",
-    "mocha": "^3.0.2",
-    "smokesignals": "v2-latest",
-    "trails": "^2.0.0-rc10"
-  },
-  "publishConfig": {
-    "tag": "next"
+    "eslint": "^3",
+    "eslint-config-trails": "^3",
+    "mocha": "^3.4",
+    "smokesignals": "^3",
+    "trails": "next"
   }
 }
