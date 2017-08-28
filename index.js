@@ -64,7 +64,7 @@ module.exports = class REPL extends Trailpack {
         // green prompt
         this.server.setPrompt('\u001b[1;32mtrails > \u001b[0m')
         this.server.resume()
-        this.server.write('', {name: 'return'})
+        this.server.write('', { name: 'return' })
       })
     }
     catch (e) {
@@ -101,6 +101,12 @@ module.exports = class REPL extends Trailpack {
     this.server.context.patch = lib.Http.patch.bind(lib.Http)
     this.server.context.head = lib.Http.head.bind(lib.Http)
     this.server.context.options = lib.Http.options.bind(lib.Http)
+  }
+
+  addCommand(command, handler) {
+    if (this.server) {
+      this.server.context[command] = handler
+    }
   }
 
   unload() {
