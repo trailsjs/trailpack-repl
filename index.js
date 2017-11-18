@@ -32,7 +32,10 @@ module.exports = class REPL extends Trailpack {
       this.config.historySize = process.env.NODE_REPL_HISTORY_SIZE || 1000
     }
 
-    this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
+    this.historyFile = path.resolve(
+      this.app.config.get('main.paths.temp'),
+      this.config.historyFileName
+    )
 
     //this.log.debug('historyFile', this.historyFile)
   }
@@ -42,7 +45,7 @@ module.exports = class REPL extends Trailpack {
     if (!process.stdout.isTTY) {
       this.log.info('trailpack-repl: No text terminal available. ')
 
-      if (!this.app.config.repl.allowNoTTY) {
+      if (!this.app.config.get('repl.allowNoTTY')) {
         this.log.info('trailpack-repl: REPL not started. Continuing.')
         this.log.debug('trailpack-repl: Set config.repl.allowNoTTY=true to override')
         return
@@ -110,7 +113,7 @@ module.exports = class REPL extends Trailpack {
   }
 
   async unload() {
-    if (!process.stdout.isTTY && !this.app.config.repl.allowNoTTY) {
+    if (!process.stdout.isTTY && !this.app.config.get('repl.allowNoTTY')) {
       return
     }
 
