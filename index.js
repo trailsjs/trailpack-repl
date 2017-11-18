@@ -32,17 +32,20 @@ module.exports = class REPL extends Trailpack {
       this.config.historySize = process.env.NODE_REPL_HISTORY_SIZE || 1000
     }
 
-    this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
+    this.historyFile = path.resolve(
+      this.app.config.get('main.paths.temp'),
+      this.config.historyFileName
+    )
 
-    this.log.debug('historyFile', this.historyFile)
+    //this.log.debug('historyFile', this.historyFile)
   }
 
-  initialize() {
+  async initialize() {
     // https://nodejs.org/api/process.html#process_tty_terminals_and_process_stdout
     if (!process.stdout.isTTY) {
       this.log.info('trailpack-repl: No text terminal available. ')
 
-      if (!this.app.config.repl.allowNoTTY) {
+      if (!this.app.config.get('repl.allowNoTTY')) {
         this.log.info('trailpack-repl: REPL not started. Continuing.')
         this.log.debug('trailpack-repl: Set config.repl.allowNoTTY=true to override')
         return
@@ -83,8 +86,8 @@ module.exports = class REPL extends Trailpack {
         .map(line => this.server.history.push(line))
     }
     catch (e) {
-      this.log.silly('Could not read REPL history file at', this.historyFile)
-      this.log.silly('No problem, a history file will be created on shutdown')
+      //this.log.silly('Could not read REPL history file at', this.historyFile)
+      //this.log.silly('No problem, a history file will be created on shutdown')
     }
 
     this.server.once('exit', () => {
@@ -109,8 +112,8 @@ module.exports = class REPL extends Trailpack {
     }
   }
 
-  unload() {
-    if (!process.stdout.isTTY && !this.app.config.repl.allowNoTTY) {
+  async unload() {
+    if (!process.stdout.isTTY && !this.app.config.get('repl.allowNoTTY')) {
       return
     }
 

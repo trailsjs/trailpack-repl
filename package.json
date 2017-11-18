@@ -1,6 +1,6 @@
 {
   "name": "trailpack-repl",
-  "version": "3.0.0-pre.1",
+  "version": "3.0.0",
   "description": "Trailpack REPL",
   "main": "index.js",
   "scripts": {
@@ -37,7 +37,7 @@
     "lodash.functions": "^4.3.0",
     "lodash.merge": "^4.6.0",
     "lodash.omit": "^4.5.0",
-    "trailpack": "3.0.0-pre.5"
+    "trailpack": "^3"
   },
   "eslintConfig": {
     "extends": "trails"
@@ -45,8 +45,11 @@
   "devDependencies": {
     "eslint": "^4",
     "eslint-config-trails": "^3",
-    "mocha": "^3.4",
+    "mocha": "^4",
     "smokesignals": "^3",
-    "trails": "next"
+    "trails": "^3"
+  },
+  "engines": {
+    "node": ">= 7.6.0"
   }
 }
