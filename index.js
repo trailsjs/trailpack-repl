@@ -34,10 +34,10 @@ module.exports = class REPL extends Trailpack {
 
     this.historyFile = path.resolve(this.app.config.main.paths.temp, this.config.historyFileName)
 
-    this.log.debug('historyFile', this.historyFile)
+    //this.log.debug('historyFile', this.historyFile)
   }
 
-  initialize() {
+  async initialize() {
     // https://nodejs.org/api/process.html#process_tty_terminals_and_process_stdout
     if (!process.stdout.isTTY) {
       this.log.info('trailpack-repl: No text terminal available. ')
@@ -83,8 +83,8 @@ module.exports = class REPL extends Trailpack {
         .map(line => this.server.history.push(line))
     }
     catch (e) {
-      this.log.silly('Could not read REPL history file at', this.historyFile)
-      this.log.silly('No problem, a history file will be created on shutdown')
+      //this.log.silly('Could not read REPL history file at', this.historyFile)
+      //this.log.silly('No problem, a history file will be created on shutdown')
     }
 
     this.server.once('exit', () => {
@@ -109,7 +109,7 @@ module.exports = class REPL extends Trailpack {
     }
   }
 
-  unload() {
+  async unload() {
     if (!process.stdout.isTTY && !this.app.config.repl.allowNoTTY) {
       return
     }
