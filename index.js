@@ -40,7 +40,7 @@ module.exports = class REPL extends Trailpack {
     this.app.log.debug('historyFile', this.historyFile)
   }
 
-  initialize () {
+  async initialize () {
     // https://nodejs.org/api/process.html#process_tty_terminals_and_process_stdout
     if (!process.stdout.isTTY) {
       this.app.log.info('trailpack-repl: No text terminal available. ')
